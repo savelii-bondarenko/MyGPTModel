@@ -1,11 +1,14 @@
 from tiktoken import get_encoding
 from torch.utils.data import Dataset
+from pathlib import Path
 import torch
 
 def tokenize_text():
-    TXT = "the-verdict.txt"
+    project_root = Path(__file__).resolve().parents[3]
+    text_path = project_root / "data" / "the-verdict.txt"
+
     tokenizer = get_encoding("gpt2")
-    with open(TXT, "r", encoding="utf-8") as f:
+    with open(text_path, "r", encoding="utf-8") as f:
         text = f.read()
         tokenized_text = tokenizer.encode(text)
     return tokenized_text

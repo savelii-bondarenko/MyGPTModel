@@ -29,8 +29,7 @@ for epoch in tqdm.tqdm(range(100)):
         x_batch, y_batch = x_batch.to(DEVICE), y_batch.to(DEVICE)
 
         token_embedding = embedding(x_batch)  
-        positions = torch.arange(GPT_CONFIG_124M["context_length"]).unsqueeze(0).expand(x_batch.size(0), GPT_CONFIG_124M["context_length"]).to(DEVICE)
-        pos_embeds = pos_embedding(positions)
+        pos_embeds = pos_embedding[:, :x_batch.size(1), :]
         combined = dropout(token_embedding + pos_embeds)
 
         logits = model(combined) 
