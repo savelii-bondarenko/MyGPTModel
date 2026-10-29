@@ -24,8 +24,7 @@ def generate_text(count_new_tokens: int, input: str, temperature:float):
     for _ in range(count_new_tokens):
         input_ids = torch.tensor(tokens[-GPT_CONFIG_124M["context_length"]:], dtype=torch.long).unsqueeze(0).to(DEVICE)  
         token_emb = embedding(input_ids) 
-        positions = torch.arange(input_ids.size(1)).unsqueeze(0).to(DEVICE)
-        pos_emb = pos_embedding(positions)
+        pos_emb = pos_embedding[:, :input_ids.size(1), :]
         combined = dropout(token_emb + pos_emb)
 
         with torch.no_grad():
@@ -47,4 +46,5 @@ def generate_text(count_new_tokens: int, input: str, temperature:float):
     print(output)
 
 if __name__ == '__main__':
-    generate_text(count_new_tokens=32, input="Hello", temperature=0.8)
+    user_inp = str(input("Enter your text: "))
+    generate_text(count_new_tokens=32, input=user_inp, temperature=0.8)
