@@ -1,10 +1,10 @@
 import torch
 from torch.utils.data import DataLoader
-from config.gpt_config import GPT_CONFIG_124M
-from model.transformer import Transformer
-from model.embedding import build_embeddings
-from data.dataset import TokenPair, tokenize_text
-from train.utils import save_model
+from mygptmodel.config.gpt_config import GPT_CONFIG_124M
+from mygptmodel.model.transformer import Transformer
+from mygptmodel.model.embedding import build_embeddings
+from mygptmodel.data.dataset import TokenPair, tokenize_text
+from mygptmodel.train.utils import save_model
 import tqdm
 
 if torch.backends.mps.is_available():

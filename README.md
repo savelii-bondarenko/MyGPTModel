@@ -23,14 +23,14 @@ The project is currently set up with a configuration modeled after a 124M parame
 
 ## Repository Structure
 
-* `config/gpt_config.py`: Contains the core `GPT_CONFIG_124M` dictionary that defines the model's hyperparameters.
-* `data/dataset.py`: Defines the text tokenization pipeline and a `TokenPair` PyTorch Dataset that yields input/target sequences chunked by the context length.
-* `model/transformer.py`: Contains the neural network layer implementations including `Transformer`, `MultiHeadAttention`, `LayerNorm`, `FeedForward`, and `GELU`.
-* `model/embedding.py`: Handles the construction of the token and positional embeddings.
-* `train/train.py`: The main training script that processes the dataset, performs forward and backward passes, and saves model checkpoints at the end of each epoch.
-* `train/utils.py`: Utility functions for saving and loading model states (`save_model`, `load_model`).
-* `generate/generate.py`: The inference script that loads a saved checkpoint (defaulting to epoch 9) and generates novel text token-by-token.
-* `the-verdict.txt`: The sample dataset used to train the model, which is a short story text.
+* `src/mygptmodel/config`: Contains the core `GPT_CONFIG_124M` dictionary that defines the model's hyperparameters.
+* `src/mygptmodel/data`: Defines the text tokenization pipeline and a `TokenPair` PyTorch Dataset that yields input/target sequences chunked by the context length.
+* `src/mygptmodel/model`: Contains the neural network layer implementations including `Transformer`, `MultiHeadAttention`, `LayerNorm`, `FeedForward`, and `GELU`.
+* `src/mygptmodel/model`: Handles the construction of the token and positional embeddings.
+* `src/mygptmodel/train`: The main training script that processes the dataset, performs forward and backward passes, and saves model checkpoints at the end of each epoch.
+* `src/mygptmodel/train`: Utility functions for saving and loading model states (`save_model`, `load_model`).
+* `src/mygptmodel/generate`: The inference script that loads a saved checkpoint (defaulting to epoch 9) and generates novel text token-by-token.
+* `data/the-verdict.txt`: The sample dataset used to train the model, which is a short story text.
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ The dependencies include packages like `torch`, `tiktoken`, and `tqdm`.
 
 ### Training the Model
 
-To train the model from scratch on `the-verdict.txt`, run the training script. The script is configured to train for 100 epochs using an Adam optimizer with a learning rate of 1e-4:
+To train the model from scratch on `data/the-verdict.txt`, run the training script. The script is configured to train for 100 epochs using an Adam optimizer with a learning rate of 1e-4:
 
 ```bash
 python -m train.train
@@ -58,7 +58,7 @@ Model checkpoints will be automatically saved to a `checkpoints/` directory as `
 
 ### Generating Text
 
-Once you have trained the model and have a checkpoint available, you can generate text. Ensure the checkpoint path in `generate/generate.py` matches your saved weights (it looks for `checkpoints/gpt_epoch_9.pt` by default):
+Once you have trained the model and have a checkpoint available, you can generate text. Ensure the checkpoint path in `src/mygptmodel/generate` matches your saved weights (it looks for `checkpoints/gpt_epoch_9.pt` by default):
 
 ```bash
 python -m generate.generate

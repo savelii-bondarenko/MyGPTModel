@@ -1,9 +1,9 @@
 import torch
-from model.transformer import Transformer
-from config.gpt_config import GPT_CONFIG_124M
-from model.embedding import build_embeddings
+from mygptmodel.model.transformer import Transformer
+from mygptmodel.config.gpt_config import GPT_CONFIG_124M
+from mygptmodel.model.embedding import build_embeddings
 from tiktoken import get_encoding
-from train.utils import load_model
+from mygptmodel.train.utils import load_model
 
 if torch.backends.mps.is_available():
     DEVICE = torch.device("mps")
