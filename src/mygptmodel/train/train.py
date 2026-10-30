@@ -42,4 +42,4 @@ for epoch in tqdm.tqdm(range(TRAIN_EPOCHS)):
         loss.backward()
         optimizer.step()
         optimizer.zero_grad()
-    save_model(model, optimizer, epoch, f"checkpoints/gpt_epoch_{epoch}.pt")
+save_model(model, optimizer, epoch, f"checkpoints/gpt_epoch_1.pt")
