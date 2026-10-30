@@ -1,7 +1,9 @@
+from pathlib import Path
+
+import torch
 from tiktoken import get_encoding
 from torch.utils.data import Dataset
-from pathlib import Path
-import torch
+
 
 def tokenize_text():
     project_root = Path(__file__).resolve().parents[3]
@@ -18,7 +20,7 @@ class TokenPair(Dataset):
         self.chunk_size = chunk_size
         self.pairs = [
             (tokens[i:i+chunk_size], tokens[i+1:i+1+chunk_size])
-            for i in range(len(tokens) - chunk_size - 1)
+            for i in range(len(tokens) - chunk_size)
         ]
 
     def __len__(self):

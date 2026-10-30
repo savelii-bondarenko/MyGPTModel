@@ -1,10 +1,13 @@
-import torch
 import math
+
+import torch
+
 
 def build_embeddings(GPT_CONFIG_124M, DEVICE):
     token_emb = torch.nn.Embedding(
         num_embeddings=GPT_CONFIG_124M["vocab_size"],
-        embedding_dim=GPT_CONFIG_124M["emb_dim"], device=DEVICE
+        embedding_dim=GPT_CONFIG_124M["emb_dim"],
+        device=DEVICE
     )
 
     max_len = GPT_CONFIG_124M["context_length"]

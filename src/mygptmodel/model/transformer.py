@@ -1,5 +1,7 @@
-import torch
 import math
+
+import torch
+
 
 class Transformer(torch.nn.Module):
     def __init__(self, drop_rate, emb_dim, n_heads, vocab_size, **kwargs):

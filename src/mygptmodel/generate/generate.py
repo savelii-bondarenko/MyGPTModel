@@ -1,8 +1,9 @@
 import torch
-from mygptmodel.model.transformer import Transformer
+from tiktoken import get_encoding
+
 from mygptmodel.config.gpt_config import GPT_CONFIG_124M
 from mygptmodel.model.embedding import build_embeddings
-from tiktoken import get_encoding
+from mygptmodel.model.transformer import Transformer
 from mygptmodel.train.utils import load_model
 
 if torch.backends.mps.is_available():

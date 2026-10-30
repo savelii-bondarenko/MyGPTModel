@@ -1,5 +1,6 @@
 import torch
 
+
 def save_model(model, optimizer, epoch, path):
     torch.save({
         'epoch': epoch,

@@ -7,3 +7,5 @@ GPT_CONFIG_124M = {
     "drop_rate": 0.1,
     "qkv_bias": False
 }
+
+TRAIN_EPOCHS = 100
