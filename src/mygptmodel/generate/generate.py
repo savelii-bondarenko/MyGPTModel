@@ -1,7 +1,7 @@
 import torch
 from tiktoken import get_encoding
 
-from mygptmodel.config.gpt_config import GPT_CONFIG_124M
+from mygptmodel.config.gpt_config import GPT_CONFIG_124M, START_MODEL_FROM_EPOCH
 from mygptmodel.model.embedding import build_embeddings
 from mygptmodel.model.transformer import Transformer
 from mygptmodel.train.utils import load_model
@@ -14,7 +14,7 @@ else:
     DEVICE = torch.device("cpu")
 
 model = Transformer(**GPT_CONFIG_124M).to(DEVICE)
-load_model(model, None, "checkpoints/gpt_epoch_9.pt", map_location=DEVICE)
+load_model(model, None, START_MODEL_FROM_EPOCH, map_location=DEVICE)
 embedding, pos_embedding, dropout = build_embeddings(GPT_CONFIG_124M, DEVICE)
 model.eval()
 

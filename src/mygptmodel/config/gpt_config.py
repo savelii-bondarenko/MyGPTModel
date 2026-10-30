@@ -9,3 +9,5 @@ GPT_CONFIG_124M = {
 }
 
 TRAIN_EPOCHS = 100
+
+START_MODEL_FROM_EPOCH = "checkpoints/gpt_epoch_99.pt"

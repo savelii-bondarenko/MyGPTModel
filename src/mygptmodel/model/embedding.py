@@ -4,14 +4,14 @@ import torch
 
 
 def build_embeddings(GPT_CONFIG_124M, DEVICE):
+    d_model = GPT_CONFIG_124M["emb_dim"]
+    max_len = GPT_CONFIG_124M["context_length"]
+
     token_emb = torch.nn.Embedding(
         num_embeddings=GPT_CONFIG_124M["vocab_size"],
-        embedding_dim=GPT_CONFIG_124M["emb_dim"],
+        embedding_dim=d_model,
         device=DEVICE
     )
-
-    max_len = GPT_CONFIG_124M["context_length"]
-    d_model = GPT_CONFIG_124M["emb_dim"]
 
     pos = torch.arange(0, max_len, dtype=torch.float32, device=DEVICE).unsqueeze(1)
     div_term = torch.exp(torch.arange(0, d_model, 2, dtype=torch.float32, device=DEVICE) * (-math.log(10000.0) / d_model))
